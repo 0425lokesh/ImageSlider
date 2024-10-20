@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    .carousel {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+    .carousel .list {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .carousel .list .item {
+        min-width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+    .carousel .list .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .carousel .list .item .content {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        text-align: center;
+        padding-right: 30%;
+    }
+    .carousel .list .item .content .author {
+        font-weight: bold;
+        letter-spacing: 5px;
+    }
+    .carousel .list .item .content .title {
+        font-weight: bold;
+        font-size: 5em;
+        color: #f1683a;
+        margin-bottom: 20px;
+    }
+    .carousel .list .item .content .topic {
+        margin-bottom: 20px;
+        font-size: 1.2em;
+    }
+    .carousel .list .item .content .buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+    .carousel .list .item .content button {
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+    }
+    .carousel .list .item .content button:nth-child(1) {
+        background-color: #eee;
+    }
+    .carousel .list .item .content button:nth-child(2) {
+        background-color: transparent;
+        color: #eee;
+        border: 1px solid #eee;
+    }
+
+    .thumbnail {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 100;
+    }
+    .thumbnail .item {
+        width: 150px;
+        height: 100px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .thumbnail .item:hover {
+        transform: scale(1.1);
+    }
+    .thumbnail .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+<body>
+    <div class="carousel">
+        <div class="list" id="carousel-list">
+            <div class="item">
+                <img src="https://img.freepik.com/premium-photo/jaguar-stalking-grass-close-up-jaguar_372999-9989.jpg">
+                <div class="content">
+                    <div class="author">LOKESH</div>
+                    <div class="title">JAGUAR</div>
+                    <div class="topic">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
+                    </div>
+                    <div class="buttons">
+                        <button>SEE MORE</button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://w0.peakpx.com/wallpaper/558/457/HD-wallpaper-african-elephant-forest-wildlife-elephants-wild-animals-gray-elephant-zimbabwe.jpg">
+                <div class="content">
+                    <div class="author">LOKESH</div>
+                    <div class="title">ELEPHANT</div>
+                    <div class="topic">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
+                    </div>
+                    <div class="buttons">
+                        <button>SEE MORE</button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://thumbs.dreamstime.com/b/ai-generative-portrait-lion-forest-wildlife-scene-nature-lion-jungle-281266260.jpg">
+                <div class="content">
+                    <div class="author">LOKESH</div>
+                    <div class="title">LION</div>
+                    <div class="topic">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
+                    </div>
+                    <div class="buttons">
+                        <button>SEE MORE</button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <div class="item" onclick="goToSlide(0)">
+                <img src="https://img.freepik.com/premium-photo/jaguar-stalking-grass-close-up-jaguar_372999-9989.jpg">
+            </div>
+            <div class="item" onclick="goToSlide(1)">
+                <img src="https://w0.peakpx.com/wallpaper/558/457/HD-wallpaper-african-elephant-forest-wildlife-elephants-wild-animals-gray-elephant-zimbabwe.jpg">
+            </div>
+            <div class="item" onclick="goToSlide(2)">
+                <img src="https://thumbs.dreamstime.com/b/ai-generative-portrait-lion-forest-wildlife-scene-nature-lion-jungle-281266260.jpg">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function goToSlide(index) {
+            const list = document.getElementById('carousel-list');
+            list.style.transform = `translateX(-${index * 100}%)`;
+            currentIndex = index;
+        }
+    </script>
+</body>
+</html>
