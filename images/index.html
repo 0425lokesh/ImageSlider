@@ -25,6 +25,7 @@
         min-width: 100%;
         height: 100vh;
         position: relative;
+        --delay : 1s;
     }
     .carousel .list .item img {
         width: 100%;
@@ -39,6 +40,7 @@
         color: white;
         text-align: center;
         padding-right: 30%;
+
     }
     .carousel .list .item .content .author {
         font-weight: bold;
@@ -73,6 +75,45 @@
         color: #eee;
         border: 1px solid #eee;
     }
+    .carousel .list .item .content button:hover{
+        background-color: black;
+        color: #fff;
+        border: black;
+    }
+    .carousel .list .item .author,
+    .carousel .list .item .title,
+    .carousel .list .item .topic,
+    .carousel .list .item .buttons {
+        filter: blur(20px);
+        opacity: 0;
+        animation: showcontent 0.5s var(--delay) linear 1 forwards;
+        transform: translateY(50px);
+    }
+
+    @keyframes showcontent {
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+    }
+
+    .carousel .list .item.active {
+        --delay: 1s;
+    }
+    .carousel .list .item.active .author {
+        --delay: 1.2s;
+    }
+    .carousel .list .item.active .title {
+        --delay: 1.4s;
+    }
+    .carousel .list .item.active .topic {
+        --delay: 1.6s;
+    }
+    .carousel .list .item.active .buttons {
+        --delay: 1.8s;
+    }
+
 
     .thumbnail {
         position: absolute;
@@ -97,16 +138,29 @@
         height: 100%;
         object-fit: cover;
     }
+    .carousel .list .item.active .content {
+        filter: blur(20px);
+        opacity: 0;
+        animation: fadeInContent 0.5s var(--delay) linear 1 forwards;
+    }
+    @keyframes fadeInContent {
+        to{
+            opacity: 1;
+            filter: blur(0);
+        }
+    }
+    
 </style>
 <body>
-    <div class="carousel">
+    <div class="carousel next">
         <div class="list" id="carousel-list">
-            <div class="item">
+            <div class="item active">
                 <img src="https://img.freepik.com/premium-photo/jaguar-stalking-grass-close-up-jaguar_372999-9989.jpg">
                 <div class="content">
                     <div class="author">LOKESH</div>
                     <div class="title">JAGUAR</div>
                     <div class="topic">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
                     </div>
                     <div class="buttons">
@@ -122,6 +176,7 @@
                     <div class="title">ELEPHANT</div>
                     <div class="topic">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
                     </div>
                     <div class="buttons">
                         <button>SEE MORE</button>
@@ -135,6 +190,7 @@
                     <div class="author">LOKESH</div>
                     <div class="title">LION</div>
                     <div class="topic">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, error!
                     </div>
                     <div class="buttons">
@@ -159,10 +215,13 @@
 
     <script>
         let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel .item');
 
         function goToSlide(index) {
             const list = document.getElementById('carousel-list');
             list.style.transform = `translateX(-${index * 100}%)`;
+            items.forEach(item => item.classList.remove('active'));
+            items[index].classList.add('active');
             currentIndex = index;
         }
     </script>
